@@ -19,7 +19,7 @@ test('Page Playwrigth test', async ({page}) => {
     console.log(allCards);
 });
 
-test.only('Dropdown Playwright test', async ({page}) => {
+test('Dropdown Playwright test', async ({page}) => {
     const roleDropdown = page.locator('select.form-control');
     const adminRadioBtn = page.locator('.radiotextsty').first();
     const userRadioBtn = page.locator('.radiotextsty').last();
@@ -28,6 +28,7 @@ test.only('Dropdown Playwright test', async ({page}) => {
     const popupCancelBtn = page.locator('#cancelBtn');
     const popupOkayBtn = page.locator('#okayBtn');
     const termsCheckbox = page.locator('#terms');
+    const documentLink = page.locator('a[href*="documents-request"]');
 
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
@@ -44,4 +45,26 @@ test.only('Dropdown Playwright test', async ({page}) => {
     await expect(termsCheckbox).not.toBeChecked();
     console.log(await termsCheckbox.isChecked());
     expect(await termsCheckbox.isChecked()).toBeFalsy();
+
+    await expect(documentLink).toHaveAttribute('class', 'blinkingText');
+});
+
+test.only('Child Window Handling', async ({browser}) => {    
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    const userNameTxt = page.locator('#username');
+    const documentLink = page.locator('a[href*="documents-request"]');
+
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    console.log(await page.title());    
+    const [newPage] = await Promise.all([
+        context.waitForEvent('page'), //Listen for the new page pending, rejected and fulfilled
+        documentLink.click({ force: true }) //New page is opened
+    ]);    
+    const text = await newPage.locator('.red').textContent();
+    const domain = text.split('@')[1].split(' ')[0];
+    console.log(text);
+    console.log(domain);
+    await userNameTxt.fill(domain);
+    console.log(await userNameTxt.inputValue());
 });
