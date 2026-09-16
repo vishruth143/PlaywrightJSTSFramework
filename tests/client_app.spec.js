@@ -8,7 +8,7 @@ test('Page Playwrigth test', async ({page}) => {
     const cards = page.locator('.card b');
    
 
-    await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+    await page.goto("https://rahulshettyacademy.com/client/#/auth/login");    
     console.log(await page.title());
     await emailTxt.fill('dummywebsite@rahulshettyacademy.com');
     await passwordTxt.fill('test@1234');
@@ -49,7 +49,7 @@ test('Dropdown Playwright test', async ({page}) => {
     await expect(documentLink).toHaveAttribute('class', 'blinkingText');
 });
 
-test.only('Child Window Handling', async ({browser}) => {    
+test('Child Window Handling', async ({browser}) => {    
     const context = await browser.newContext();
     const page = await context.newPage();
     const userNameTxt = page.locator('#username');
@@ -67,4 +67,52 @@ test.only('Child Window Handling', async ({browser}) => {
     console.log(domain);
     await userNameTxt.fill(domain);
     console.log(await userNameTxt.inputValue());
+});
+
+test.only('Client App-E2E Flow', async ({page}) => {    
+    const emailTxt = page.locator('#userEmail');
+    const passwordTxt = page.locator('#userPassword');    
+    const loginBtn = page.locator('#login');
+
+    const products = page.locator('.card-body');
+    const productName = "ZARA COAT 3";
+    const cartBtn = page.locator('[routerlink*="cart"]');
+   
+
+    await page.goto("https://rahulshettyacademy.com/client");
+    console.log(await page.title());
+    await emailTxt.fill('dummywebsite@rahulshettyacademy.com');
+    await passwordTxt.fill('test@1234');
+    await loginBtn.click(); 
+    await products.first().waitFor();
+    const allProducts = await products.allTextContents();
+    console.log(allProducts);
+    const count = await products.count();
+    console.log(count); 
+    for(let i=0; i<count; ++i){
+       if(await products.nth(i).locator("b").textContent() === productName) {
+           await products.nth(i).locator("text=Add To Cart").click();
+           break;
+       }
+    }
+    await cartBtn.click();
+    //await page.pause();
+    await page.locator('div li').first().waitFor();
+
+    const bool = page.locator('h3:has-text("ZARA COAT 3")').isVisible();
+    expect(bool).toBeTruthy();
+
+    await page.locator('text=Checkout').click();
+    await page.locator("[placeholder*='Country']").pressSequentially("ind");
+    const dropdown = page.locator(".ta-results");
+    await dropdown.waitFor();
+    const optionsCount = await dropdown.locator('button').count;
+    for(let i=0; i < optionsCount; ++i){
+        const text = await dropdown.locator("button").nth(i).textContent();
+        if(text.trim() === "India"){
+            await dropdown.locator("button").nth(i).click();
+            break;
+        }
+    }
+    await page.pause();
 });
