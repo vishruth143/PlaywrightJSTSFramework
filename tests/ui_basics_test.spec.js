@@ -4,7 +4,11 @@ test('Browser Context Playwrigth test', async ({browser}) => {
     //Chrome - Plugins / Cookies
     const context = await browser.newContext();
     const page = await context.newPage();
-    await page.goto("https://rahulshettyacademy.com/loginpagePractice/");
+    await page.goto("https://rahulshettyacademy.com/loginpagePractice/", 
+        {
+            waitUntil: 'domcontentloaded',   // don't wait for full 'load' — faster, less timeout-prone
+            timeout: 60000                   // bump nav timeout for flaky third-party sites
+       });
     console.log(await page.title());
     await page.locator('#username').fill('rahulshettyacademy');
     await page.locator('#password').fill('Learning@830$3mK2');
@@ -34,7 +38,11 @@ test('Valid login test', async ({page}) => {
     const signInBtn = page.locator('#signInBtn');
     const cardTitles = page.locator(".card-body a");
 
-    await page.goto("https://rahulshettyacademy.com/loginpagePractice/");
+    await page.goto("https://rahulshettyacademy.com/loginpagePractice/", 
+        {
+            waitUntil: 'domcontentloaded',   // don't wait for full 'load' — faster, less timeout-prone
+            timeout: 60000                   // bump nav timeout for flaky third-party sites
+       });
     console.log(await page.title());
 
     await userNameTxt.fill('rahulshettyacademy');

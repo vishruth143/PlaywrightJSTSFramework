@@ -5,16 +5,20 @@ test('Page Playwrigth test', async ({page}) => {
     const emailTxt = page.locator('#userEmail');
     const passwordTxt = page.locator('#userPassword');    
     const loginBtn = page.locator('#login');
-    const cards = page.locator('.card b');
+    const cards = page.locator('.card-body b');
    
 
-    await page.goto("https://rahulshettyacademy.com/client/#/auth/login");    
+    await page.goto("https://rahulshettyacademy.com/client/#/auth/login", 
+        {
+            waitUntil: 'domcontentloaded',   // don't wait for full 'load' — faster, less timeout-prone
+            timeout: 60000                   // bump nav timeout for flaky third-party sites
+       });    
     console.log(await page.title());
     await emailTxt.fill('dummywebsite@rahulshettyacademy.com');
     await passwordTxt.fill('test@1234');
     await loginBtn.click(); 
     // await page.waitForLoadState('networkidle');
-    await cards.first().waitFor();
+    await expect(cards.first()).toBeVisible();
     const allCards = await cards.allTextContents();
     console.log(allCards);
 });
@@ -30,7 +34,11 @@ test('Dropdown Playwright test', async ({page}) => {
     const termsCheckbox = page.locator('#terms');
     const documentLink = page.locator('a[href*="documents-request"]');
 
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/", 
+        {
+            waitUntil: 'domcontentloaded',   // don't wait for full 'load' — faster, less timeout-prone
+            timeout: 60000                   // bump nav timeout for flaky third-party sites
+       });
     console.log(await page.title());
     await userRadioBtn.check();
     await expect(userRadioBtn).toBeChecked();
@@ -55,7 +63,11 @@ test('Child Window Handling', async ({browser}) => {
     const userNameTxt = page.locator('#username');
     const documentLink = page.locator('a[href*="documents-request"]');
 
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/", 
+        {
+            waitUntil: 'domcontentloaded',   // don't wait for full 'load' — faster, less timeout-prone
+            timeout: 60000                   // bump nav timeout for flaky third-party sites
+       });
     console.log(await page.title());    
     const [newPage] = await Promise.all([
         context.waitForEvent('page'), //Listen for the new page pending, rejected and fulfilled
@@ -69,7 +81,7 @@ test('Child Window Handling', async ({browser}) => {
     console.log(await userNameTxt.inputValue());
 });
 
-test.only('Client App-E2E Flow', async ({page}) => {    
+test('Client App-E2E Flow', async ({page}) => {    
     const emailTxt = page.locator('#userEmail');
     const passwordTxt = page.locator('#userPassword');    
     const loginBtn = page.locator('#login');
@@ -77,11 +89,16 @@ test.only('Client App-E2E Flow', async ({page}) => {
     const products = page.locator('.card-body');
     const productName = "ZARA COAT 3";
     const cartBtn = page.locator('[routerlink*="cart"]');
+    const email = 'dummywebsite@rahulshettyacademy.com';
    
 
-    await page.goto("https://rahulshettyacademy.com/client");
+    await page.goto("https://rahulshettyacademy.com/client", 
+        {
+            waitUntil: 'domcontentloaded',   // don't wait for full 'load' — faster, less timeout-prone
+            timeout: 60000                   // bump nav timeout for flaky third-party sites
+       });
     console.log(await page.title());
-    await emailTxt.fill('dummywebsite@rahulshettyacademy.com');
+    await emailTxt.fill(email);
     await passwordTxt.fill('test@1234');
     await loginBtn.click(); 
     await products.first().waitFor();
@@ -103,10 +120,10 @@ test.only('Client App-E2E Flow', async ({page}) => {
     expect(bool).toBeTruthy();
 
     await page.locator('text=Checkout').click();
-    await page.locator("[placeholder*='Country']").pressSequentially("ind");
+    await page.locator("[placeholder*='Country']").pressSequentially("ind", {delay: 150});
     const dropdown = page.locator(".ta-results");
     await dropdown.waitFor();
-    const optionsCount = await dropdown.locator('button').count;
+    const optionsCount = await dropdown.locator('button').count();
     for(let i=0; i < optionsCount; ++i){
         const text = await dropdown.locator("button").nth(i).textContent();
         if(text.trim() === "India"){
@@ -114,5 +131,28 @@ test.only('Client App-E2E Flow', async ({page}) => {
             break;
         }
     }
-    await page.pause();
+
+    await expect(page.locator('.user__name [type="text"]').first()).toHaveText(email);
+    await page.locator('.action__submit').click();
+
+
+    await expect(page.locator('.hero-primary')).toHaveText(" Thankyou for the order. ");
+    const orederIdRaw = await page.locator('.em-spacer-1 .ng-star-inserted').textContent();
+    const orederId = orederIdRaw.replace(/\|/g, '').trim();   // strip pipe characters, then trim
+    console.log(orederId);
+
+    await page.locator('button[routerlink*="myorders"]').click();
+    await page.locator('tbody tr').first().waitFor();
+    const rows = await page.locator('tbody tr');
+    for (let i=0; i < await rows.count(); ++i) {
+        const rowOrderId = await rows.nth(i).locator('th').textContent();        
+        if(rowOrderId.trim() === orederId.trim()){    
+            //await page.pause();                   
+            await rows.nth(i).locator('button').first().click();
+            break;
+        }
+    }
+    await page.locator('.email-title').waitFor({ state: 'visible' });
+    await expect(page.locator('.email-title')).toHaveText(" order summary ");
+    //await page.pause();
 });
