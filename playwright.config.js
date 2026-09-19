@@ -13,10 +13,11 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './tests',                //Test folder where the tests are stored
-  testIgnore: '**/example.spec.js',  //To ignore particulat test file
-  timeout: 30 * 1000,                //Timeout for each test
-  expect:{                           //Timeout for expect assertions
+  testDir: './tests',                // Test folder where the tests are stored
+  testMatch: '**/*.spec.js',         // Pattern to identify test files to run
+  testIgnore: '**/example.spec.js',  // To ignore particulat test file
+  timeout: 30 * 1000,                // Timeout for each test
+  expect:{                           // Timeout for expect assertions
     timeout: 50 * 1000,
   },
   /* Run tests in files in parallel */
@@ -36,9 +37,11 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
-    //headless: true,
-    screenshot: 'only-on-failure'
-  },
+    //headless: true,                // Run browser in headed/headless mode
+    screenshot: 'only-on-failure',   // Capture screenshot only when a test fails
+    actionTimeout: 10 * 1000,        // Timeout for each action within the test
+    navigationTimeout: 30 * 1000,    // Timeout for navigation actions within the test
+  },  
 
   /* Configure projects for major browsers */
   projects: [
