@@ -89,7 +89,7 @@ test('Client App-E2E Flow', async ({page}) => {
     const products = page.locator('.card-body');
     const productName = "ZARA COAT 3";
     const cartBtn = page.locator('[routerlink*="cart"]');
-    const email = 'dummywebsite@rahulshettyacademy.com';
+    const email = 'anshika@gmail.com';
    
 
     await page.goto("https://rahulshettyacademy.com/client", 
@@ -99,7 +99,7 @@ test('Client App-E2E Flow', async ({page}) => {
        });
     console.log(await page.title());
     await emailTxt.fill(email);
-    await passwordTxt.fill('test@1234');
+    await passwordTxt.fill('Iamking@000');
     await loginBtn.click(); 
     await products.first().waitFor();
     const allProducts = await products.allTextContents();
@@ -137,16 +137,16 @@ test('Client App-E2E Flow', async ({page}) => {
 
 
     await expect(page.locator('.hero-primary')).toHaveText(" Thankyou for the order. ");
-    const orederIdRaw = await page.locator('.em-spacer-1 .ng-star-inserted').textContent();
-    const orederId = orederIdRaw.replace(/\|/g, '').trim();   // strip pipe characters, then trim
-    console.log(orederId);
+    const orderIdRaw = await page.locator('.em-spacer-1 .ng-star-inserted').textContent();
+    const orderId = orderIdRaw.replace(/\|/g, '').trim();   // strip pipe characters, then trim
+    console.log(orderId);
 
     await page.locator('button[routerlink*="myorders"]').click();
     await page.locator('tbody tr').first().waitFor();
     const rows = await page.locator('tbody tr');
     for (let i=0; i < await rows.count(); ++i) {
         const rowOrderId = await rows.nth(i).locator('th').textContent();        
-        if(rowOrderId.trim() === orederId.trim()){    
+        if(rowOrderId.trim() === orderId.trim()){    
             //await page.pause();                   
             await rows.nth(i).locator('button').first().click();
             break;
