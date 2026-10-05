@@ -4,6 +4,10 @@ test("Browser Context Playwrigth test", async ({ browser }) => {
   //Chrome - Plugins / Cookies
   const context = await browser.newContext();
   const page = await context.newPage();
+  // page.route('**/*.css', route => route.abort());
+  // page.route('**/*.{jpg, png, jpeg}', route => route.abort());
+  page.on('request', request => console.log('>>', request.url()));
+  page.on('response', response => console.log('>>', response.url(), response.status()));
   await page.goto("https://rahulshettyacademy.com/loginpagePractice/", {
     waitUntil: "domcontentloaded", // don't wait for full 'load' — faster, less timeout-prone
     timeout: 60000, // bump nav timeout for flaky third-party sites
