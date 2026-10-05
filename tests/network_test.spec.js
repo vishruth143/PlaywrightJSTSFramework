@@ -8,6 +8,7 @@ const loginPayLoad = {
 const orderPayLoad = {
   orders: [{ country: "Cuba", productOrderedId: "6960eac0c941646b7a8b3e68" }],
 };
+const fakePayLoadOrders = { data: [], message: "No Orders" };
 
 let response;
 
@@ -23,18 +24,22 @@ test("Client App login and place order", async ({ page }) => {
   }, response.token);
 
   await page.goto("https://rahulshettyacademy.com/client");
+  await page.route(
+    "https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*",
+    async (route) => {
+      const response = await page.request.fetch(route.request());
+      let body = JSON.stringify(fakePayLoadOrders);
+      route.fulfill({
+        response,
+        body,
+      });
+      //Intercepting the response: API response -> {Playwrigth fake response} -> Browser -> Render on the UI
+    },
+  );
+  const responsePromise = page.waitForResponse("**/get-orders-for-customer/*");
   await page.locator('button[routerlink*="myorders"]').click();
-  await page.locator("tbody tr").first().waitFor();
-  const rows = await page.locator("tbody tr");
-  for (let i = 0; i < (await rows.count()); ++i) {
-    const rowOrderId = await rows.nth(i).locator("th").textContent();
-    if (response.orderId.includes(rowOrderId.trim())) {
-      //await page.pause();
-      await rows.nth(i).locator("button").first().click();
-      break;
-    }
-  }
-  await page.locator(".email-title").waitFor({ state: "visible" });
-  await expect(page.locator(".email-title")).toHaveText(" order summary ");
-  //await page.pause();
+  await responsePromise;
+
+  await expect(page.locator(".mt-4")).toContainText("No Orders");
+  console.log(await page.locator(".mt-4").textContent());
 });
