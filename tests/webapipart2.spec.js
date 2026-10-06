@@ -10,8 +10,7 @@ test.beforeAll(async ({ browser }) => {
   await page.locator("[value='Login']").click();
   await page.waitForURL("**/dashboard/**");
   await context.storageState({ path: "state.json" });
-  webContext = await browser.newContext({ storageState: "state.json" });
-  await context.close();
+  webContext = await browser.newContext({ storageState: "state.json" });  
 });
 
 test("Client App Login", async () => {
