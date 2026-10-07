@@ -114,4 +114,55 @@ test.describe("Automation Practice", () => {
     await expect(checkboxes.nth(1)).toBeChecked();
     await expect(checkboxes.nth(2)).toBeChecked();
   });
+
+  test("Screenshot & Visual Comparison Example", async ({ page }) => {
+    // Block ads/third-party calls that slow the page load (register before goto)
+    await page.route(/googlesyndication|doubleclick|adservice/, (route) =>
+      route.abort(),
+    );
+
+    await page.goto("https://rahulshettyacademy.com/AutomationPractice/", {
+      waitUntil: "domcontentloaded",
+    });
+
+    const displayedText = page.locator("#displayed-text");
+
+    // Before hide: visible, then compare with baseline
+    await expect(displayedText).toBeVisible();
+    await displayedText.screenshot({
+      path: "screenshots/displayed-text-before-hide.png",
+    });
+    await expect(displayedText).toHaveScreenshot("displayed-text-visible.png");
+
+    // Hide the textbox
+    await page.locator("#hide-textbox").click();
+    await expect(displayedText).toBeHidden();
+
+    // Full page screenshot after hide
+    await page.screenshot({
+      path: "screenshots/after-hide.png",
+      fullPage: true,
+    });
+  });
+
+  test.only("Visual Testing Example - fails on purpose", async ({ page }) => {
+    await page.route(/googlesyndication|doubleclick|adservice/, (route) =>
+      route.abort(),
+    );
+    await page.goto("https://rahulshettyacademy.com/AutomationPractice/", {
+      waitUntil: "domcontentloaded",
+    });
+
+    // Simulate a UI regression only when BREAK_UI is set
+    if (process.env.BREAK_UI) {
+      await page.addStyleTag({
+        content:
+          'header a[href="https://www.rahulshettyacademy.com/"] button { background: black !important; border-color: black !important; }',
+      });
+    }
+
+    expect(await page.screenshot()).toMatchSnapshot(
+      "AutomationPractice-Homepage.png",
+    );
+  });
 });
