@@ -11,7 +11,11 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.62.1",
-    "@types/node": "^26.4.1"
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.5",
+    "exceljs": "^4.4.0"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^13.3.0"
   }
 }
