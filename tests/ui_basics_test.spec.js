@@ -1,5 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
+/** @priority P3 @owner vishvambruth @feature ui-basics */
 test("Browser Context Playwrigth test", async ({ browser }) => {
   //Chrome - Plugins / Cookies
   const context = await browser.newContext();
@@ -19,12 +20,14 @@ test("Browser Context Playwrigth test", async ({ browser }) => {
   await page.locator("#signInBtn").click();
 });
 
+/** @priority P3 @owner vishvambruth @feature ui-basics */
 test("Page Playwrigth test", async ({ page }) => {
   await page.goto("https://www.google.com/");
   console.log(await page.title());
   await expect(page).toHaveTitle(/Google/);
 });
 
+/** @priority P2 @owner vishvambruth @feature login */
 test('Empty "Username" validation', async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/loginpagePractice/");
   console.log(await page.title());
@@ -36,6 +39,7 @@ test('Empty "Username" validation', async ({ page }) => {
   );
 });
 
+/** @priority P1 @owner vishvambruth @feature login */
 test("Valid login test", async ({ page }) => {
   const userNameTxt = page.locator("#username");
   const passwordTxt = page.locator("#password");

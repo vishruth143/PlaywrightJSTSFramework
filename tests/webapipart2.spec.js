@@ -13,6 +13,7 @@ test.beforeAll(async ({ browser }) => {
   webContext = await browser.newContext({ storageState: "state.json" });  
 });
 
+/** @priority P2 @owner vishvambruth @feature login */
 test("Client App Login", async () => {
   const email = "anshika@gmail.com";
   const productName = "ZARA COAT 3";
@@ -78,6 +79,7 @@ test("Client App Login", async () => {
   //await page.pause();
 });
 
+/** @priority P2 @owner vishvambruth @feature login */
 test("Client App Login 1", async () => {
   const page = await webContext.newPage();
   await page.goto("https://rahulshettyacademy.com/client");

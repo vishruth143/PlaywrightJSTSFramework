@@ -21,6 +21,7 @@ test.afterAll(async () => {
   console.log("Once after all tests");
 });
 
+/** @priority P3 @owner vishvambruth @feature hooks */
 test.describe("Playwright Hooks Practice", () => {
   test("test 1", async ({ page }) => {
     await expect(page).toHaveTitle(/Let's Shop/);

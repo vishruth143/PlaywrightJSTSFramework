@@ -1,4 +1,5 @@
 const { test, expect } = require("@playwright/test");
+/** @priority P3 @owner vishvambruth @feature ui-practice */
 test.describe("Automation Practice", () => {
   test("Browser navigations", async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");

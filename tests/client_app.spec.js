@@ -1,5 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
+/** @priority P3 @owner vishvambruth @feature ui-basics */
 test("Page Playwrigth test", async ({ page }) => {
   const emailTxt = page.locator("#userEmail");
   const passwordTxt = page.locator("#userPassword");
@@ -20,6 +21,7 @@ test("Page Playwrigth test", async ({ page }) => {
   console.log(allCards);
 });
 
+/** @priority P3 @owner vishvambruth @feature ui-basics */
 test("Dropdown Playwright test", async ({ page }) => {
   const roleDropdown = page.locator("select.form-control");
   const adminRadioBtn = page.locator(".radiotextsty").first();
@@ -53,6 +55,7 @@ test("Dropdown Playwright test", async ({ page }) => {
   await expect(documentLink).toHaveAttribute("class", "blinkingText");
 });
 
+/** @priority P3 @owner vishvambruth @feature ui-basics */
 test("Child Window Handling", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
@@ -76,6 +79,7 @@ test("Child Window Handling", async ({ browser }) => {
   console.log(await userNameTxt.inputValue());
 });
 
+/** @priority P0 @owner vishvambruth @feature checkout */
 test("Client App-E2E Flow", async ({ page }) => {
   const emailTxt = page.locator("#userEmail");
   const passwordTxt = page.locator("#userPassword");

@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 
+/** @priority P3 @owner vishvambruth @feature locators */
 test("Playwright Special locators", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/angularpractice", {
     waitUntil: "domcontentloaded", // don't wait for full 'load' — faster, less timeout-prone
@@ -28,6 +29,7 @@ test("Playwright Special locators", async ({ page }) => {
     .click();
 });
 
+/** @priority P3 @owner vishvambruth @feature locators */
 test("Playwright test level timeout", async ({ page }) => {
   //Timeout hierarchy: Global -> Test level -> Step level -> Expect level
 
@@ -63,6 +65,7 @@ test("Playwright test level timeout", async ({ page }) => {
     .click();
 });
 
+/** @priority P2 @owner vishvambruth @feature login */
 test("Client App login", async ({ page }) => {
   const email = "anshika@gmail.com";
   const productName = "ZARA COAT 3";

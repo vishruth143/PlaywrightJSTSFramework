@@ -161,6 +161,7 @@ async function loginAndGoToEvents(page) {
 }
 
 // ── Test 1: 6 events → banner IS visible ──────────────────────────────────────
+/** @priority P2 @owner vishvambruth @feature sandbox-banner */
 test("sandbox banner is shown when 6 events are returned", async ({ page }) => {
   await page.route("**/api/events**", async (route) => {
     await route.fulfill({
@@ -184,6 +185,7 @@ test("sandbox banner is shown when 6 events are returned", async ({ page }) => {
 });
 
 // ── Test 2: 4 events → banner is NOT visible ──────────────────────────────────
+/** @priority P2 @owner vishvambruth @feature sandbox-banner */
 test("sandbox banner is hidden when 4 events are returned", async ({
   page,
 }) => {

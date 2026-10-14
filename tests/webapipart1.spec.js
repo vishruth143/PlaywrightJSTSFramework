@@ -17,6 +17,7 @@ test.beforeAll(async () => {
   response = await apiUtils.createOrder(orderPayLoad);
 });
 
+/** @priority P1 @owner vishvambruth @feature orders */
 test("Client App login and place order", async ({ page }) => {
   page.addInitScript((value) => {
     window.localStorage.setItem("token", value);

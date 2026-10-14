@@ -67,6 +67,7 @@ async function checkRefundEligibility(page) {
   await expect(spinner).toBeHidden({ timeout: 6000 });
 }
 
+/** @priority P1 @owner vishvambruth @feature refunds */
 test.describe("Refund eligibility", () => {
   test("Single ticket booking is eligible for refund", async ({ page }) => {
     await loginAndGoToBooking(page);

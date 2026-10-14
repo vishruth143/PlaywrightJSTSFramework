@@ -25,6 +25,7 @@ function futureDateValue() {
   return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
 }
 
+/** @priority P1 @owner vishvambruth @feature event-booking */
 test("create event, book it, and verify seat count drops by 1", async ({
   page,
 }) => {

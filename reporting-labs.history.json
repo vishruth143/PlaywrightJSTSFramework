@@ -1,0 +1,48 @@
+[
+ {
+  "time": 1791944535279,
+  "duration": 18466.969,
+  "passed": 1,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 1,
+  "tests": {
+   "chromium::tests/assignment1.spec.js::create event, book it, and verify seat count drops by 1": [
+    "p",
+    11252
+   ]
+  }
+ },
+ {
+  "time": 1791944848119,
+  "duration": 120029.774,
+  "passed": 4,
+  "failed": 1,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 5,
+  "tests": {
+   "chromium::tests/assignment1.spec.js::create event, book it, and verify seat count drops by 1": [
+    "p",
+    21460
+   ],
+   "chromium::tests/ui_basics_test.spec.js::Browser Context Playwrigth test": [
+    "p",
+    13253
+   ],
+   "chromium::tests/ui_basics_test.spec.js::Page Playwrigth test": [
+    "p",
+    4103
+   ],
+   "chromium::tests/ui_basics_test.spec.js::Empty \"Username\" validation": [
+    "f",
+    64451
+   ],
+   "chromium::tests/ui_basics_test.spec.js::Valid login test": [
+    "p",
+    11259
+   ]
+  }
+ }
+]

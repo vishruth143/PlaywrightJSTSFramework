@@ -1,6 +1,7 @@
 const { expect } = require("@playwright/test");
 const { customtest } = require("../utils/fixtures.js");
 
+/** @priority P3 @owner vishvambruth @feature fixtures */
 customtest(
   "Fixtures demo",
   async ({ authenticatedPage, createOrder, testDataForOrder }) => {

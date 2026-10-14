@@ -24,6 +24,7 @@ async function login(page) {
 }
 
 // ── Test ───────────────────────────────────────────────────────────────────────
+/** @priority P1 @owner vishvambruth @feature event-booking */
 test("create event via UI, book it, and verify seat reduction", async ({
   page,
 }) => {

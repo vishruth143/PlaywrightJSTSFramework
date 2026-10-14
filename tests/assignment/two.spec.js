@@ -19,6 +19,7 @@ async function loginAs(page, user) {
   ).toBeVisible();
 }
 
+/** @priority P1 @owner vishvambruth @feature access-control */
 test("gmail user sees Access Denied when viewing yahoo user booking", async ({
   page,
   request,

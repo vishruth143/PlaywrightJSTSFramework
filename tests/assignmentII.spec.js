@@ -16,6 +16,7 @@ async function loginAndGoToBooking(page) {
 }
 
 // ── Test 1: 1 ticket → eligible ───────────────────────────────────────────────
+/** @priority P1 @owner vishvambruth @feature refunds */
 test("refund eligible for single ticket booking", async ({ page }) => {
   await loginAndGoToBooking(page);
 
@@ -63,6 +64,7 @@ test("refund eligible for single ticket booking", async ({ page }) => {
 });
 
 // ── Test 2: 3 tickets → not eligible ─────────────────────────────────────────
+/** @priority P1 @owner vishvambruth @feature refunds */
 test("refund not eligible for group ticket booking", async ({ page }) => {
   await loginAndGoToBooking(page);
 

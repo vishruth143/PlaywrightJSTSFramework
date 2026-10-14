@@ -1,5 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
+/** @priority P2 @owner vishvambruth @feature security */
 test("Security test request interception", async ({ page }) => {
   //login and reach orders page
   await page.goto("https://rahulshettyacademy.com/client");
