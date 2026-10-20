@@ -1,6 +1,7 @@
 ---
-description: Rewrite a raw prompt into a concise, high-performing prompt
-agent: ask
+name: enhance
+description: "Rewrite a raw prompt into a concise, high-performing prompt"
+disable-model-invocation: true
 ---
 You are a senior prompt engineer. Rewrite the RAW PROMPT below into an optimized prompt for GitHub Copilot.
 

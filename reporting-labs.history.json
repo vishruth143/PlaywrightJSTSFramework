@@ -44,5 +44,139 @@
     11259
    ]
   }
+ },
+ {
+  "time": 1791964428928,
+  "duration": 29.015999999999963,
+  "passed": 0,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 0,
+  "tests": {}
+ },
+ {
+  "time": 1791964476620,
+  "duration": 59.85800000000006,
+  "passed": 0,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 0,
+  "tests": {}
+ },
+ {
+  "time": 1791964558994,
+  "duration": 62.76400000000001,
+  "passed": 0,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 0,
+  "tests": {}
+ },
+ {
+  "time": 1791964669756,
+  "duration": 40.254999999999995,
+  "passed": 0,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 0,
+  "tests": {}
+ },
+ {
+  "time": 1791965285185,
+  "duration": 147.73000000000002,
+  "passed": 0,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 0,
+  "tests": {}
+ },
+ {
+  "time": 1791965317825,
+  "duration": 54421.651,
+  "passed": 4,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 4,
+  "tests": {
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ZARA COAT 3": [
+    "p",
+    12767
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ADIDAS ORIGINAL": [
+    "p",
+    10408
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - iphone 13 pro": [
+    "p",
+    11386
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login": [
+    "p",
+    7718
+   ]
+  }
+ },
+ {
+  "time": 1791965550204,
+  "duration": 45734.062,
+  "passed": 4,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 4,
+  "tests": {
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ZARA COAT 3": [
+    "p",
+    10026
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ADIDAS ORIGINAL": [
+    "p",
+    9380
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - iphone 13 pro": [
+    "p",
+    8946
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login": [
+    "p",
+    7165
+   ]
+  }
+ },
+ {
+  "time": 1791972789893,
+  "duration": 41383.858,
+  "passed": 0,
+  "failed": 1,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 1,
+  "tests": {
+   "chromium::tests/playwright_validations.spec.js::Automation Practice › Visual Testing Example - fails on purpose": [
+    "f",
+    10320
+   ]
+  }
+ },
+ {
+  "time": 1791972868139,
+  "duration": 17139.957000000002,
+  "passed": 1,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 1,
+  "tests": {
+   "chromium::tests/playwright_validations.spec.js::Automation Practice › Visual Testing Example - fails on purpose": [
+    "p",
+    9524
+   ]
+  }
  }
 ]
