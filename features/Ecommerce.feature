@@ -1,5 +1,6 @@
-Feature: Ecommerce Validations
 
+Feature: Ecommerce Validations
+  @regression @smoke @sanity
   Scenario: Placing the order
     Given User login to Ecommerce application with "ashika@gmail.com" and "Iamking@000"
     When Add "ZARA COAT 3" to cart   

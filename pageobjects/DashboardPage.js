@@ -8,6 +8,7 @@ class DashboardPage {
   }
 
   async searchProductAndAddToCart(productName) {
+    await this.productsText.first().waitFor();
     const titles = await this.productsText.allTextContents();
     console.log(titles);
     const count = await this.products.count();

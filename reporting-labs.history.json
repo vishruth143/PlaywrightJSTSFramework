@@ -178,5 +178,70 @@
     9524
    ]
   }
+ },
+ {
+  "time": 1792639833666,
+  "duration": 106307.50600000001,
+  "passed": 3,
+  "failed": 1,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 4,
+  "tests": {
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ZARA COAT 3": [
+    "p",
+    12397
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ADIDAS ORIGINAL": [
+    "p",
+    9642
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - iphone 13 pro": [
+    "f",
+    61530
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login": [
+    "p",
+    8297
+   ]
+  }
+ },
+ {
+  "time": 1792642167663,
+  "duration": 18590.27000000002,
+  "passed": 1,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 1,
+  "tests": {
+   "chromium::tests/client_app_po1.spec.js::Client App login": [
+    "p",
+    9510
+   ]
+  }
+ },
+ {
+  "time": 1792642207086,
+  "duration": 48823.92599999998,
+  "passed": 3,
+  "failed": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "total": 3,
+  "tests": {
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ZARA COAT 3": [
+    "p",
+    14288
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - ADIDAS ORIGINAL": [
+    "p",
+    9593
+   ],
+   "chromium::tests/client_app_po1.spec.js::Client App login for the product - iphone 13 pro": [
+    "p",
+    11377
+   ]
+  }
  }
 ]
